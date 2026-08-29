@@ -16,6 +16,29 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+DROP DATABASE salon;
+--
+-- Name: salon; Type: DATABASE; Schema: -; Owner: freecodecamp
+--
+
+CREATE DATABASE salon WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'C.UTF-8' LC_CTYPE = 'C.UTF-8';
+
+
+ALTER DATABASE salon OWNER TO freecodecamp;
+
+\connect salon
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -63,39 +86,33 @@ ALTER TABLE public.services OWNER TO freecodecamp;
 -- Data for Name: appointments; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-COPY public.appointments (appointment_id, customer_id, service_id, "time") FROM stdin;
-1	1	1	10:30
-2	1	2	11am
-3	2	1	FakeTime
-4	2	1	FakeTime
-5	2	1	FakeTime
-6	2	1	FakeTime
-7	2	1	FakeTime
-8	2	1	FakeTime
-9	2	1	FakeTime
-10	2	1	FakeTime
-\.
+INSERT INTO public.appointments VALUES ('1', '1', '1', '10:30');
+INSERT INTO public.appointments VALUES ('2', '1', '2', '11am');
+INSERT INTO public.appointments VALUES ('3', '2', '1', 'FakeTime');
+INSERT INTO public.appointments VALUES ('4', '2', '1', 'FakeTime');
+INSERT INTO public.appointments VALUES ('5', '2', '1', 'FakeTime');
+INSERT INTO public.appointments VALUES ('6', '2', '1', 'FakeTime');
+INSERT INTO public.appointments VALUES ('7', '2', '1', 'FakeTime');
+INSERT INTO public.appointments VALUES ('8', '2', '1', 'FakeTime');
+INSERT INTO public.appointments VALUES ('9', '2', '1', 'FakeTime');
+INSERT INTO public.appointments VALUES ('10', '2', '1', 'FakeTime');
 
 
 --
 -- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-COPY public.customers (customer_id, phone, name) FROM stdin;
-1	555-555-5555	Fabio
-2	555-5555	Test
-\.
+INSERT INTO public.customers VALUES ('1', '555-555-5555', 'Fabio');
+INSERT INTO public.customers VALUES ('2', '555-5555', 'Test');
 
 
 --
 -- Data for Name: services; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-COPY public.services (service_id, name) FROM stdin;
-1	cut
-2	color
-3	perm
-\.
+INSERT INTO public.services VALUES ('1', 'cut');
+INSERT INTO public.services VALUES ('2', 'color');
+INSERT INTO public.services VALUES ('3', 'perm');
 
 
 --
