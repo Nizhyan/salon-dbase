@@ -48,71 +48,122 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.appointments (
-    appointment_id character varying NOT NULL,
-    customer_id character varying,
-    service_id character varying,
-    "time" character varying(10)
+    appointment_id integer NOT NULL,
+    customer_id integer,
+    service_id integer,
+    "time" character varying(20)
 );
 
 
 ALTER TABLE public.appointments OWNER TO freecodecamp;
 
 --
+-- Name: appointments_appointment_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE public.appointments ALTER COLUMN appointment_id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.appointments_appointment_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
 -- Name: customers; Type: TABLE; Schema: public; Owner: freecodecamp
 --
 
 CREATE TABLE public.customers (
-    customer_id character varying NOT NULL,
-    phone character varying,
-    name character varying
+    customer_id integer NOT NULL,
+    phone character varying(20),
+    name character varying(50)
 );
 
 
 ALTER TABLE public.customers OWNER TO freecodecamp;
 
 --
+-- Name: customers_customer_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE public.customers ALTER COLUMN customer_id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.customers_customer_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
 -- Name: services; Type: TABLE; Schema: public; Owner: freecodecamp
 --
 
 CREATE TABLE public.services (
-    service_id character varying NOT NULL,
-    name character varying
+    service_id integer NOT NULL,
+    name character varying(50)
 );
 
 
 ALTER TABLE public.services OWNER TO freecodecamp;
 
 --
+-- Name: services_service_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE public.services ALTER COLUMN service_id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.services_service_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
 -- Data for Name: appointments; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-INSERT INTO public.appointments VALUES ('1', '1', '1', '10:30');
-INSERT INTO public.appointments VALUES ('2', '1', '2', '11am');
-INSERT INTO public.appointments VALUES ('3', '2', '1', 'FakeTime');
-INSERT INTO public.appointments VALUES ('4', '2', '1', 'FakeTime');
-INSERT INTO public.appointments VALUES ('5', '2', '1', 'FakeTime');
-INSERT INTO public.appointments VALUES ('6', '2', '1', 'FakeTime');
-INSERT INTO public.appointments VALUES ('7', '2', '1', 'FakeTime');
-INSERT INTO public.appointments VALUES ('8', '2', '1', 'FakeTime');
-INSERT INTO public.appointments VALUES ('9', '2', '1', 'FakeTime');
-INSERT INTO public.appointments VALUES ('10', '2', '1', 'FakeTime');
 
 
 --
 -- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-INSERT INTO public.customers VALUES ('1', '555-555-5555', 'Fabio');
-INSERT INTO public.customers VALUES ('2', '555-5555', 'Test');
 
 
 --
 -- Data for Name: services; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-INSERT INTO public.services VALUES ('1', 'cut');
-INSERT INTO public.services VALUES ('2', 'color');
-INSERT INTO public.services VALUES ('3', 'perm');
+INSERT INTO public.services OVERRIDING SYSTEM VALUE VALUES (1, 'cut');
+INSERT INTO public.services OVERRIDING SYSTEM VALUE VALUES (2, 'color');
+INSERT INTO public.services OVERRIDING SYSTEM VALUE VALUES (3, 'perm');
+
+
+--
+-- Name: appointments_appointment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
+--
+
+SELECT pg_catalog.setval('public.appointments_appointment_id_seq', 65, true);
+
+
+--
+-- Name: customers_customer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
+--
+
+SELECT pg_catalog.setval('public.customers_customer_id_seq', 58, true);
+
+
+--
+-- Name: services_service_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
+--
+
+SELECT pg_catalog.setval('public.services_service_id_seq', 3, true);
 
 
 --
